@@ -11,7 +11,7 @@ export const Footer = () => {
             <h2 className="text-xl font-bold bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
               Blio
             </h2>
-            <p className="text-sm text-slate-500 max-w-xs">
+            <p className="text-sm text-slate-500">
               모든 커리어가 기록이 되고, 기록이 곧 증명이 되는 공간. <br/>
               Blio와 함께 당신의 성장을 커밋하세요.
             </p>
@@ -48,7 +48,7 @@ export const Footer = () => {
         {/* 하단 바 */}
         <div className="border-t border-slate-100 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-400">
-            © 2024 Blio. All rights reserved.
+            © 2026 Blio. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-slate-400">
             <a href="#" className="hover:text-slate-600 transition-colors">

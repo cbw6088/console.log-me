@@ -16,7 +16,7 @@ interface EditorTitleProps {
           }}
           placeholder={placeholder}
           rows={1}
-          className="w-full text-4xl md:text-5xl font-extrabold placeholder:text-slate-200 border-none focus:ring-0 resize-none overflow-hidden bg-transparent p-0 transition-all"
+          className="w-full text-2xl md:text-3xl font-extrabold placeholder:text-slate-200 border-none focus:ring-0 resize-none overflow-hidden bg-transparent p-0 transition-all"
         />
         {/* 포커스 시 길어지는 밑선 */}
         <div className="h-1 w-20 bg-slate-100 group-focus-within:w-full group-focus-within:bg-emerald-500 transition-all duration-500" />
