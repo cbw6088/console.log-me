@@ -11,11 +11,13 @@ import {
 
 interface EditorToolbarProps {
   editor: any;
+  isPublic?: boolean;
+  onPublicChange?: (isPublic: boolean) => void;
 }
 
 const FONT_SIZES = ['12px', '14px', '16px', '18px', '20px', '24px', '30px', '36px'];
 
-export const EditorToolbar = ({ editor }: EditorToolbarProps) => {
+export const EditorToolbar = ({ editor, isPublic, onPublicChange }: EditorToolbarProps) => {
   // 숨겨진 file input을 참조하기 위한 useRef
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -55,6 +57,8 @@ export const EditorToolbar = ({ editor }: EditorToolbarProps) => {
   return (
     <div className="flex flex-wrap items-center gap-1 p-2 mb-4 bg-white border border-slate-200 rounded-2xl sticky top-20 z-40 shadow-sm">
       
+      {/* 왼쪽: 에디터 도구들 */}
+      <div className="flex items-center gap-1 flex-1">
       {/* 1. 글꼴 크기 드롭다운 */}
       <div className="flex items-center gap-1 bg-slate-50 px-2 py-1 rounded-xl mr-2 border border-slate-100">
         <Type className="w-4 h-4 text-slate-400" />
@@ -135,6 +139,24 @@ export const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         accept="image/*"
         className="hidden"
       />
+      </div>
+
+      {/* 오른쪽: 공개/비공개 설정 */}
+      {isPublic !== undefined && onPublicChange && (
+        <div className="flex items-center gap-2 ml-auto pl-4 border-l border-slate-200">
+          <label className="flex items-center gap-2 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={isPublic}
+              onChange={(e) => onPublicChange(e.target.checked)}
+              className="w-4 h-4 rounded border-slate-300 text-emerald-500 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1 cursor-pointer transition-all"
+            />
+            <span className="text-xs text-slate-600 font-medium group-hover:text-slate-900 transition-colors whitespace-nowrap">
+              공개
+            </span>
+          </label>
+        </div>
+      )}
     </div>
   );
 };

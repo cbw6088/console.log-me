@@ -67,7 +67,7 @@ const CustomFontSize = Extension.create({
   },
 });
 
-export const BodyEditor = ({ content, onChange, placeholder }: any) => {
+export const BodyEditor = ({ content, onChange, placeholder, isPublic, onPublicChange }: any) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ 
@@ -99,7 +99,7 @@ export const BodyEditor = ({ content, onChange, placeholder }: any) => {
   return (
     <div className="relative group">
       {/* 상단 툴바 */}
-      <EditorToolbar editor={editor} />
+      <EditorToolbar editor={editor} isPublic={isPublic} onPublicChange={onPublicChange} />
 
       {/* 이미지 클릭 시 나타나는 버블 메뉴 */}
       {editor && (

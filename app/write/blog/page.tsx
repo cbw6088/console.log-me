@@ -6,6 +6,7 @@ import { ChevronLeft, Send } from 'lucide-react';
 
 // 공통 컴포넌트
 import { Button } from '@/components/ui/Button';
+import { PublishConfirmModal } from '@/components/ui/PublishConfirmModal';
 
 // 에디터 관련 컴포넌트
 import { CoverImageUploader } from '@/components/editor/CoverImageUploader';
@@ -25,12 +26,16 @@ export default function BlogWritePage() {
   const [tags, setTags] = useState<string[]>([]);
   const [content, setContent] = useState('');
   const [coverImage, setCoverImage] = useState<string | undefined>();
+  const [isPublic, setIsPublic] = useState(true); // 공개/비공개 설정 (기본값: 공개)
 
   /* --- 2. 커버 이미지 편집 관련 상태 --- */
   const [tempImage, setTempImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  /* --- 3. 핸들러 함수들 --- */
+  /* --- 3. 발행 확인 모달 상태 --- */
+  const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
+
+  /* --- 4. 핸들러 함수들 --- */
   
   // 커버 이미지 업로드 트리거
   const handleUploadClick = () => fileInputRef.current?.click();
@@ -61,17 +66,29 @@ export default function BlogWritePage() {
     }
   };
 
-  // 최종 발행 로직 (현재는 콘솔 로그)
-  const handlePublish = () => {
-    const postData = {
-      title,
-      tags,
-      content,
-      coverImage,
-      updatedAt: new Date().toISOString(),
-    };
-    console.log('발행될 데이터:', postData);
-    // TODO: Firebase 또는 서버 API 호출
+  // 발행하기 버튼 클릭 시 모달 오픈
+  const handlePublishClick = () => {
+    setIsPublishModalOpen(true);
+  };
+
+  // 최종 발행 로직 (모달에서 확인 시 실행)
+  const handlePublishConfirm = async () => {
+    try {
+      const postData = {
+        title,
+        tags,
+        content,
+        coverImage,
+        isPublic,
+        updatedAt: new Date().toISOString(),
+      };
+      console.log('발행될 데이터:', postData);
+      
+      router.push('/');
+    } catch (error) {
+      console.error('발행 실패:', error);
+      // TODO: 에러 처리 (토스트 메시지 등)
+    }
   };
 
   return (
@@ -86,7 +103,7 @@ export default function BlogWritePage() {
           뒤로가기
         </button>
         <Button 
-          onClick={handlePublish}
+          onClick={handlePublishClick}
           className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full shadow-lg shadow-emerald-100 flex items-center gap-2"
         >
           <Send className="w-4 h-4" />
@@ -139,6 +156,15 @@ export default function BlogWritePage() {
         content={content} 
         onChange={setContent} 
         placeholder="당신의 이야기를 들려주세요..."
+        isPublic={isPublic}
+        onPublicChange={setIsPublic}
+      />
+
+      {/* 발행 확인 모달 */}
+      <PublishConfirmModal
+        isOpen={isPublishModalOpen}
+        onClose={() => setIsPublishModalOpen(false)}
+        onConfirm={handlePublishConfirm}
       />
     </div>
   );
