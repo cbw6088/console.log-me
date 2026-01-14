@@ -93,24 +93,6 @@ export default function BlogWritePage() {
 
   return (
     <div className="max-w-4xl mx-auto py-12 px-6">
-      {/* 상단 액션 바 */}
-      <div className="flex justify-between items-center mb-10">
-        <button 
-          onClick={() => router.back()}
-          className="flex items-center text-slate-500 hover:text-slate-800 transition-colors font-medium"
-        >
-          <ChevronLeft className="w-5 h-5 mr-1" />
-          뒤로가기
-        </button>
-        <Button 
-          onClick={handlePublishClick}
-          className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full shadow-lg shadow-emerald-100 flex items-center gap-2"
-        >
-          <Send className="w-4 h-4" />
-          발행하기
-        </Button>
-      </div>
-
       {/* 커버 이미지 영역 */}
       <input 
         type="file" 
@@ -159,6 +141,24 @@ export default function BlogWritePage() {
         isPublic={isPublic}
         onPublicChange={setIsPublic}
       />
+
+      {/* 하단 액션 바 */}
+      <div className="mt-4 pt-6 pb-6 -mx-6 px-6 flex justify-between items-center">
+        <button 
+          onClick={() => router.back()}
+          className="flex items-center text-slate-500 hover:text-slate-800 transition-colors font-medium"
+        >
+          <ChevronLeft className="w-5 h-5 mr-1" />
+          뒤로가기
+        </button>
+        <Button 
+          onClick={handlePublishClick}
+          className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full shadow-lg shadow-emerald-100 flex items-center gap-2"
+        >
+          <Send className="w-4 h-4" />
+          발행하기
+        </Button>
+      </div>
 
       {/* 발행 확인 모달 */}
       <PublishConfirmModal

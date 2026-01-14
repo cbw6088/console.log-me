@@ -1,8 +1,7 @@
 'use client'; 
 
-import { Github, ArrowLeft } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 
@@ -17,15 +16,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center px-4">
-      {/* 홈으로 돌아가기 버튼 */}
-      <Link 
-        href="/" 
-        className="absolute top-8 left-8 flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-500 transition-colors font-medium"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        홈으로 돌아가기
-      </Link>
-
       <div className="w-full max-w-md">
         {/* 서비스 브랜딩 */}
         <div className="text-center mb-10">

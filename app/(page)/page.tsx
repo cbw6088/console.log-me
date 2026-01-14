@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Header } from '@/components/layout/Header';
 import { Sidebar } from '@/components/layout/SideBar';
-import { Footer } from '@/components/layout/Footer';
 import { HeroCarousel } from '@/components/layout/HeroCarousel'; // 추가
 import { PromoBanner } from '@/components/common/PromoBanner'; // 추가
 import { PostCard } from '@/components/common/PostCard';
@@ -18,10 +16,7 @@ export default function HomePage() {
   })));
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      <Header />
-
-      <main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
+    <div className="max-w-7xl mx-auto px-4 py-8 w-full">
         {/* 1. 자동 슬라이드 Hero 구역 */}
         <HeroCarousel />
 
@@ -48,9 +43,6 @@ export default function HomePage() {
 
           <Sidebar />
         </div>
-      </main>
-
-      <Footer />
     </div>
   );
 }
