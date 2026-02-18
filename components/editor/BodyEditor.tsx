@@ -73,8 +73,8 @@ export const BodyEditor = ({ content, onChange, placeholder, isPublic, onPublicC
       StarterKit.configure({ 
         heading: { levels: [1, 2, 3, 4] } 
       }),
-      TextStyle, // 💡 폰트 사이즈 적용을 위한 필수 확장
-      CustomFontSize, // 💡 직접 만든 폰트 사이즈 명령어 등록
+      TextStyle, 
+      CustomFontSize,
       ExtendedImage.configure({ allowBase64: true }),
       Placeholder.configure({ 
         placeholder: placeholder || '내용을 입력하세요...' 
@@ -88,7 +88,6 @@ export const BodyEditor = ({ content, onChange, placeholder, isPublic, onPublicC
     },
     editorProps: {
       attributes: {
-        // prose-p:my-1 로 줄바꿈 간격을 자연스럽게 조정했습니다.
         class: 'prose prose-lg max-w-none focus:outline-none min-h-[500px] text-slate-700 p-4 prose-headings:font-bold',
       },
     },
